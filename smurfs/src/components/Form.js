@@ -11,6 +11,7 @@ class Form extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log(e);
     if (parseInt(this.state.age)) {
       this.props.addSmurf(this.state);
       this.setState({ name: "", age: "", height: "" });
@@ -19,7 +20,7 @@ class Form extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={e => this.handleSubmit(e)}>
         <input
           type="text"
           name="name"

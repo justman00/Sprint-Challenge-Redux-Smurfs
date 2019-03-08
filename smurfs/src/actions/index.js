@@ -6,6 +6,8 @@ import axios from "axios";
 export const LOADING = "LOADING";
 export const FETCH_SMURFS = "FETCH_SMURFS";
 export const ADD_SMURF = "ADD_SMURF";
+export const DELETE_SMURF = "DELETE_SMURF";
+export const EDIT_SMURF = "EDIT_SMURF";
 
 /*
   For this project you'll need at least 2 action creators for the main portion,
@@ -27,8 +29,14 @@ export const fetchSmurfs = () => async dispatch => {
 export const addSmurf = ({ name, age, height }) => async dispatch => {
   dispatch({ type: LOADING });
   const creds = { name, age: parseInt(age), height };
-  console.log(creds);
   const res = await axios.post(`http://localhost:3333/smurfs`, creds);
   console.log(res.data);
   dispatch({ type: ADD_SMURF, payload: res.data });
+};
+
+export const deleteSmurf = id => async dispatch => {
+  dispatch({ type: LOADING });
+  const res = await axios.delete(`http://localhost:3333/smurfs/${id}`);
+  console.log(res.data);
+  dispatch({ type: DELETE_SMURF, payload: res.data });
 };

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { fetchSmurfs } from "../actions";
+import { fetchSmurfs, deleteSmurf } from "../actions";
 import { connect } from "react-redux";
 import Form from "./Form";
 /*
@@ -15,16 +15,21 @@ class App extends Component {
   }
 
   render() {
-    if (this.props.isLoading) {
-      return <div>Loading...</div>;
-    }
+    // if (this.props.isLoading) {
+    //   return <div>Loading...</div>;
+    // }
 
     return (
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
 
         {this.props.smurfs.map(smurf => (
-          <div>{smurf.name}</div>
+          <div key={smurf.id}>
+            {smurf.name}{" "}
+            <button onClick={() => this.props.deleteSmurf(smurf.id)}>
+              Delete
+            </button>
+          </div>
         ))}
         <Form />
       </div>
@@ -39,5 +44,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchSmurfs }
+  { fetchSmurfs, deleteSmurf }
 )(App);

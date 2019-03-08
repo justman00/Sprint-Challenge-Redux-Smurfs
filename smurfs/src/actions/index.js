@@ -30,13 +30,23 @@ export const addSmurf = ({ name, age, height }) => async dispatch => {
   dispatch({ type: LOADING });
   const creds = { name, age: parseInt(age), height };
   const res = await axios.post(`http://localhost:3333/smurfs`, creds);
-  console.log(res.data);
+
   dispatch({ type: ADD_SMURF, payload: res.data });
 };
 
 export const deleteSmurf = id => async dispatch => {
   dispatch({ type: LOADING });
   const res = await axios.delete(`http://localhost:3333/smurfs/${id}`);
-  console.log(res.data);
+
   dispatch({ type: DELETE_SMURF, payload: res.data });
+};
+
+export const editSmurf = (id, name) => async dispatch => {
+  dispatch({ type: LOADING });
+  const res = await axios.put(`http://localhost:3333/smurfs/${id}`, {
+    id,
+    name
+  });
+
+  dispatch({ type: EDIT_SMURF, payload: res.data });
 };

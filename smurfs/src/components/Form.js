@@ -11,10 +11,12 @@ class Form extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(e);
     if (parseInt(this.state.age)) {
-      this.props.addSmurf(this.state);
-      this.setState({ name: "", age: "", height: "" });
+      this.props.addSmurf(this.state).then(() => {
+        this.setState({ name: "", age: "", height: "" }, () =>
+          console.log(this.state)
+        );
+      });
     }
   };
 
@@ -26,18 +28,21 @@ class Form extends Component {
           name="name"
           placeholder="name"
           onChange={this.handleChange}
+          value={this.state.name}
         />
         <input
           type="text"
           name="age"
           placeholder="age"
           onChange={this.handleChange}
+          value={this.state.age}
         />
         <input
           type="text"
           name="height"
           placeholder="height"
           onChange={this.handleChange}
+          value={this.state.height}
         />
         <button>Submit</button>
       </form>

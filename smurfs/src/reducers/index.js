@@ -6,7 +6,13 @@
  Your initial/default state for this project could *Although does not have to* look a lot like this
  
 */
-import { LOADING, ADD_SMURF, FETCH_SMURFS, DELETE_SMURF } from "../actions";
+import {
+  LOADING,
+  ADD_SMURF,
+  FETCH_SMURFS,
+  DELETE_SMURF,
+  EDIT_SMURF
+} from "../actions";
 
 const initialState = {
   smurfs: [],
@@ -30,6 +36,8 @@ export default (state = initialState, action) => {
     case FETCH_SMURFS:
       return { ...state, loading: false, smurfs: action.payload };
     case DELETE_SMURF:
+      return { ...state, loading: false, smurfs: action.payload };
+    case EDIT_SMURF:
       return { ...state, loading: false, smurfs: action.payload };
     default:
       return state;

@@ -24,8 +24,11 @@ export const fetchSmurfs = () => async dispatch => {
   dispatch({ type: FETCH_SMURFS, payload: res.data });
 };
 
-export const addSmurf = formVals => async dispatch => {
+export const addSmurf = ({ name, age, height }) => async dispatch => {
   dispatch({ type: LOADING });
-  const res = await axios.post(`http://localhost:3333/smurfs`, formVals);
+  const creds = { name, age: parseInt(age), height };
+  console.log(creds);
+  const res = await axios.post(`http://localhost:3333/smurfs`, creds);
+  console.log(res.data);
   dispatch({ type: ADD_SMURF, payload: res.data });
 };

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import { fetchSmurfs, addSmurf } from "../actions";
+import { fetchSmurfs } from "../actions";
 import { connect } from "react-redux";
+import Form from "./Form";
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -14,15 +15,18 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.smurfs);
+    if (this.props.isLoading) {
+      return <div>Loading...</div>;
+    }
+
     return (
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your Redux version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
+
         {this.props.smurfs.map(smurf => (
           <div>{smurf.name}</div>
         ))}
+        <Form />
       </div>
     );
   }
@@ -35,5 +39,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addSmurf, fetchSmurfs }
+  { fetchSmurfs }
 )(App);

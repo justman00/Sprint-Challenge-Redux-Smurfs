@@ -1,6 +1,21 @@
 1.  Name 3 JavaScript Array/Object Methods that do not produce side-effects? Which method do we use to create a new object while extending the properties of another object?
+    map, filter the new keyword creates a new instance of an obj, for chaning we can use the spread operator, .concat() for arrays and Object.assign() for objects
 1.  Describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+- store is the holder of all the data that can be accessed by the entire application, reducers are the ones that change the data and insert them into a new store, the actions are the initiators of everything sending to the reducers the needed data
+
 1.  What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+- state of an app = state of everything / state of a component = can be accessed just by the component and passed as props of course
+
 1.  What is middleware?
+
+- it is a function that catches some sort of change
+
 1.  Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+- redux thunk is a middleware that allows us to use async action creators
+
 1.  Which `react-redux` method links up our `components` with our `redux store`?
+
+- connect(mapStateToProps, mapDispatchToProps)(App)
